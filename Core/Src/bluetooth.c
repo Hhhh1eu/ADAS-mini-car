@@ -1,0 +1,24 @@
+#include "bluetooth.h"
+
+void Bluetooth_Init(void)
+{
+    // USART2 đã được CubeMX khởi tạo.
+    // Không cần xử lý thêm.
+}
+
+void Bluetooth_SendString(char *str)
+{
+    HAL_UART_Transmit(&huart2,
+                      (uint8_t *)str,
+                      strlen(str),
+                      100);
+}
+
+void Bluetooth_SendDistance(float distance)
+{
+    char buffer[50];
+
+    sprintf(buffer, "Distance: %.1f cm\r\n", distance);
+
+    Bluetooth_SendString(buffer);
+}

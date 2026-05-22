@@ -1,0 +1,10 @@
+../Core/Src/motor.c:13:17:PercentToCompare	16	static
+../Core/Src/motor.c:22:6:Motor_Init	8	static
+../Core/Src/motor.c:31:6:Motor_SetLeftSpeed	24	static
+../Core/Src/motor.c:37:6:Motor_SetRightSpeed	24	static
+../Core/Src/motor.c:43:6:Motor_SetSpeed	16	static
+../Core/Src/motor.c:50:6:Motor_Backward	8	static
+../Core/Src/motor.c:69:6:Motor_Forward	8	static
+../Core/Src/motor.c:88:6:Motor_TurnLeft	8	static
+../Core/Src/motor.c:102:6:Motor_TurnRight	8	static
+../Core/Src/motor.c:116:6:Motor_Stop	8	static
