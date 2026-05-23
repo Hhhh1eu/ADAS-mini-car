@@ -130,6 +130,8 @@ int main(void)
   const float reaction_time = 0.6f;
   const float brake_accel = 1.5f;
 
+uint32_t command_timer = 0;
+
   float d_safe;
 
   char buffer[17];
@@ -149,9 +151,16 @@ int main(void)
 	  if (HAL_UART_Receive(&huart6, &bt_data, 1, 10) == HAL_OK)
 	  {
 	      command = bt_data;
-
+		command_timer = HAL_GetTick();
+		  
 	      printf("CMD: %c\r\n", command);
 	  }
+		
+		if (HAL_GetTick() - command_timer > 300)
+	  {
+	      command = 'X';
+	  }
+		
         // Đọc khoảng cách
         distance = HCSR04_Read();
 
@@ -232,7 +241,6 @@ int main(void)
                         case 'a':
 
                         	Motor_TurnLeft();
-                            Motor_SetSpeed(70, 70);
 
                             break;
 
@@ -240,7 +248,6 @@ int main(void)
                         case 'd':
 
                         	Motor_TurnRight();
-                            Motor_SetSpeed(70, 70);
 
                             break;
 
@@ -266,7 +273,9 @@ int main(void)
         else if (distance > d_safe)
         {
             LED_On();
-            Buzzer_Beep(170);
+            Buzzer_On();
+        	HAL_Delay(50);
+        	Buzzer_Off();
 
             LCD_SetCursor(0,1);
             LCD_Print("WARNING         ");
@@ -325,10 +334,83 @@ int main(void)
             LCD_SetCursor(0,1);
             LCD_Print("DANGER          ");
 
-            Motor_Stop();
+            switch(command)
+                {
+                    // =====================
+                    // CẤM TIẾN
+                    // =====================
+
+                    case 'W':
+                    case 'w':
+
+                        Motor_Stop();
+
+                        break;
+
+                    // =====================
+                    // CHO PHÉP LÙI
+                    // =====================
+
+                    case 'S':
+                    case 's':
+
+                        Motor_Backward();
+                        Motor_SetSpeed(45,45);
+
+                        break;
+
+                    // =====================
+                    // RẼ TRÁI
+                    // =====================
+
+                    case 'A':
+                    case 'a':
+
+                        Motor_Forward();
+
+                        Motor_SetLeftSpeed(20);
+                        Motor_SetRightSpeed(45);
+
+                        break;
+
+                    // =====================
+                    // RẼ PHẢI
+                    // =====================
+
+                    case 'D':
+                    case 'd':
+
+                        Motor_Forward();
+
+                        Motor_SetLeftSpeed(45);
+                        Motor_SetRightSpeed(20);
+
+                        break;
+
+                    // =====================
+                    // STOP
+                    // =====================
+
+                    case 'X':
+                    case 'x':
+
+                        Motor_Stop();
+
+                        break;
+
+                    // =====================
+                    // DEFAULT
+                    // =====================
+
+                    default:
+
+                        Motor_Stop();
+
+                        break;
+                }
         }
 
-        HAL_Delay(50);
+        HAL_Delay(10);
     }
     /* USER CODE END WHILE */
 
