@@ -2,13 +2,11 @@
 
 void Bluetooth_Init(void)
 {
-    // USART2 đã được CubeMX khởi tạo.
-    // Không cần xử lý thêm.
 }
 
 void Bluetooth_SendString(char *str)
 {
-    HAL_UART_Transmit(&huart2,
+   HAL_UART_Transmit(&huart6,
                       (uint8_t *)str,
                       strlen(str),
                       100);
