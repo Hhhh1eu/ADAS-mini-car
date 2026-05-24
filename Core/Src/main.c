@@ -31,7 +31,6 @@
 #include <stdio.h>
 #include "motor.h"
 #include "lcd_i2c.h"
-#include "servo.h"
 
 /* USER CODE END Includes */
 
@@ -105,13 +104,11 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   MX_I2C1_Init();
-  MX_TIM1_Init();
   MX_TIM3_Init();
   MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
   Motor_Init();
   HCSR04_Init();
-  Servo_Init();
   LCD_Init();
 
   LCD_Clear();
