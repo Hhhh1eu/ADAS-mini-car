@@ -1,0 +1,3 @@
+../Core/Src/led.c:9:6:LED_On	0	static
+../Core/Src/led.c:18:6:LED_Off	0	static
+../Core/Src/led.c:27:6:LED_Toggle	0	static

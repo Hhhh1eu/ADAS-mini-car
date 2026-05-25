@@ -1,0 +1,3 @@
+../Core/Src/hcsr04.c:10:14:HCSR04_ReadOnce	24	static
+../Core/Src/hcsr04.c:81:6:HCSR04_Init	4	static
+../Core/Src/hcsr04.c:87:7:HCSR04_Read	24	static

@@ -1,0 +1,9 @@
+../Core/Src/motor.c:45:6:Motor_SetLeftSpeed	0	static
+../Core/Src/motor.c:50:6:Motor_SetRightSpeed	0	static
+../Core/Src/motor.c:55:6:Motor_SetSpeed	8	static
+../Core/Src/motor.c:67:6:Motor_Backward	0	static
+../Core/Src/motor.c:82:6:Motor_Forward	0	static
+../Core/Src/motor.c:97:6:Motor_TurnLeft	0	static
+../Core/Src/motor.c:116:6:Motor_TurnRight	0	static
+../Core/Src/motor.c:135:6:Motor_Stop	8	static
+../Core/Src/motor.c:32:6:Motor_Init	8	static
